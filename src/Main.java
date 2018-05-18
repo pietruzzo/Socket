@@ -4,12 +4,13 @@ import java.util.Date;
 
 public class Main {
 
-    private static final String URL = "ftp://<username>:<passwd>@ftp.parrocchiadirezzanello.altervista.org/files/server.txt";
+    private static final String URL = "ftp://parrocchiadirezzanello:semplicissima@ftp.parrocchiadirezzanello.altervista.org/files/server.txt";
 
     public static void main(String[] args) throws IOException {
 
         //Public Private/Public server current IP through FTP protocol (authenticated) on URL
         setRemoteServerIP(URL, getPrivateIP());
+        System.out.println(getPublicIP());
 
 
         //Open serverSocket
