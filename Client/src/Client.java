@@ -1,16 +1,17 @@
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
+import java.net.URL;
 
 public class Client {
 
+    private static final String url1 = "ftp://parrocchiadirezzanello:semplicissima@ftp.parrocchiadirezzanello.altervista.org/files/server.txt";
+
     public static void main(String[] args) throws IOException {
-        String serverAddress = JOptionPane.showInputDialog(
-                "Enter IP Address of a machine that is\n" +
-                        "running the date service on port 9090:");
-        Socket s = new Socket(serverAddress, 9090);
+
+        Socket s = new Socket(getRemoteServerIP(url1), 9090);
+
+        //Receives DateTime from server and print it
         BufferedReader input =
                 new BufferedReader(new InputStreamReader(s.getInputStream()));
         String answer = input.readLine();
@@ -18,4 +19,12 @@ public class Client {
         System.exit(0);
     }
 
+    public static String getRemoteServerIP(String url) throws IOException {
+        byte[] b = new byte[15];
+        URL serverURL = new URL(url);
+        InputStream is = serverURL.openStream();
+        BufferedInputStream bis = new BufferedInputStream(is);
+        bis.read(b, 0, 15);
+        return new String(b).split("-")[0];
+    }
 }
