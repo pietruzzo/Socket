@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 
@@ -9,7 +10,9 @@ public class Client {
 
     public static void main(String[] args) throws IOException {
 
-        Socket s = new Socket(getRemoteServerIP(url1), 9090);
+        String remoteIP = getRemoteServerIP(url1);
+        System.out.println(remoteIP);
+        Socket s = new Socket(InetAddress.getByName(remoteIP), 9090);
 
         //Receives DateTime from server and print it
         BufferedReader input =
