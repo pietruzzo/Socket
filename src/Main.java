@@ -2,6 +2,8 @@ import java.io.*;
 import java.net.*;
 import java.util.Date;
 
+import static java.net.InetAddress.*;
+
 public class Main {
 
     private static final String URL = "ftp://parrocchiadirezzanello:semplicissima@ftp.parrocchiadirezzanello.altervista.org/files/server.txt";
@@ -10,7 +12,7 @@ public class Main {
 
         //Public Private/Public server current IP through FTP protocol (authenticated) on URL
         setRemoteServerIP(URL, getPrivateIP());
-        System.out.println(getPublicIP());
+        getPublicIP();
 
 
         //Open serverSocket
@@ -40,8 +42,12 @@ public class Main {
      * @throws UnknownHostException if unable to retrieve IP
      */
     public static String getPrivateIP() throws UnknownHostException{
-            String addr = InetAddress.getLocalHost().getHostAddress();
-            System.out.println(addr);
+            String addr = getLocalHost().getHostAddress();
+        System.out.println("All local IP");
+            for (InetAddress a: getAllByName(InetAddress.getLocalHost().getHostName())){
+                System.out.println(a.getHostAddress());
+            }
+            System.out.println("Choosen lIP:" + addr);
             return addr;
     }
 
@@ -59,6 +65,7 @@ public class Main {
         BufferedReader in = new BufferedReader(new InputStreamReader(
                 whatismyip.openStream()));
         String ip = in.readLine();
+        System.out.println("Public IP : "+ip);
         return ip;
     }
 
