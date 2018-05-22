@@ -6,7 +6,7 @@ import static java.net.InetAddress.*;
 
 public class Main {
 
-    private static final String URL = "ftp://parrocchiadirezzanello:semplicissima@ftp.parrocchiadirezzanello.altervista.org/files/server.txt";
+    private static final String URL = "ftp://<USR>:>PASSWD>@ftp.<HOST>/files/server.txt";
 
     public static void main(String[] args) throws IOException {
 

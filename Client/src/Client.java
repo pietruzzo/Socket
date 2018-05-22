@@ -6,11 +6,11 @@ import java.net.URL;
 
 public class Client {
 
-    private static final String url1 = "ftp://parrocchiadirezzanello:semplicissima@ftp.parrocchiadirezzanello.altervista.org/files/server.txt";
+    private static final String URL = "ftp://<USR>:>PASSWD>@ftp.<HOST>/files/server.txt";
 
     public static void main(String[] args) throws IOException {
 
-        String remoteIP = getRemoteServerIP(url1);
+        String remoteIP = getRemoteServerIP(URL);
         System.out.println(remoteIP);
         Socket s = new Socket(InetAddress.getByName(remoteIP), 9090);
 
